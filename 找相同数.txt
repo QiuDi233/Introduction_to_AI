@@ -1,0 +1,11 @@
+#input
+n of int in[1, 1000];
+number of (int in[0, 10000])[1~n];
+
+#required
+
+i != j;
+number[i] = number[j] ;
+
+#output
+number[i];

@@ -1,0 +1,14 @@
+#input
+n of int in[1,8];
+k of int in[1,8];
+
+#required
+number of(int in[1, 8])[1~8];
+number[1] = n;
+number[2] = k;
+alldiff number;
+
+number[i] - number[j] != i - j:forall(i,j)(i!=j);
+number[i] - number[j] != j - i:forall(i,j)(i!=j);
+#output
+number;
