@@ -1,14 +1,49 @@
+/*æè¿°
+Sudoku is a very simple task. A square table with 9 rows and 9 columns is divided to 9 smaller squares 3x3 as shown on the Figure. 
+In some of the cells are written decimal digits from 1 to 9. The other cells are empty. 
+The goal is to fill the empty cells with decimal digits from 1 to 9, one digit per cell, in such way that in each row, 
+in each column and in each marked 3x3 subsquare, all the digits from 1 to 9 to appear. Write a program to solve a given Sudoku-task. 
+
+è¾“å…¥
+The input data will start with the number of the test cases. For each test case, 9 lines follow, corresponding to the rows of the table.
+On each line a string of exactly 9 decimal digits is given, corresponding to the cells in this line. If a cell is empty it is represented by 0.
+è¾“å‡º
+For each test case your program should print the solution in the same format as the input data.
+The empty cells have to be filled according to the rules. If solutions is not unique, then the program may print any one of them.
+æ ·ä¾‹è¾“å…¥
+1
+103000509
+002109400
+000704000
+300502006
+060000050
+700803004
+000401000
+009205800
+804000107
+æ ·ä¾‹è¾“å‡º
+143628579
+572139468
+986754231
+391542786
+468917352
+725863914
+237481695
+619275843
+854396127*/
+
+
 #include<iostream>
 #include<cstring>
 using namespace std;
-int r[9][10];//µÚiĞĞµÄjÊı³öÏÖµÄ´ÎÊı
-int c[9][10];//µÚiÁĞµÄjÊı³öÏÖµÄ´ÎÊı
-int k[9][10];//µÚi¸öĞ¡¿ò jÊı³öÏÖµÄ´ÎÊı 
+int r[9][10];//ç¬¬iè¡Œçš„jæ•°å‡ºç°çš„æ¬¡æ•°
+int c[9][10];//ç¬¬iåˆ—çš„jæ•°å‡ºç°çš„æ¬¡æ•°
+int k[9][10];//ç¬¬iä¸ªå°æ¡† jæ•°å‡ºç°çš„æ¬¡æ•° 
 int sudoku[9][9];
 int ans[9][9];
 bool found=false;
-void dfs(int x,int y){//¸øx yÕâ¸öµØ·½ÌîÊı ÏÈ°ÑĞĞÌîºÃ ÔÙÌîÁĞ 
-	if(sudoku[x][y]!=0){//Õâ¸öµØ·½²»ÊÇ¿ÕµÄ ÄÇ¾ÍÕÒÏÂÒ»¸öÎ»ÖÃ°É 
+void dfs(int x,int y){//ç»™x yè¿™ä¸ªåœ°æ–¹å¡«æ•° å…ˆæŠŠè¡Œå¡«å¥½ å†å¡«åˆ— 
+	if(sudoku[x][y]!=0){//è¿™ä¸ªåœ°æ–¹ä¸æ˜¯ç©ºçš„ é‚£å°±æ‰¾ä¸‹ä¸€ä¸ªä½ç½®å§ 
 		if(y==8){
 			dfs(x+1,0);
 		}
@@ -26,8 +61,8 @@ void dfs(int x,int y){//¸øx yÕâ¸öµØ·½ÌîÊı ÏÈ°ÑĞĞÌîºÃ ÔÙÌîÁĞ
 		found=true;
 		return;
 	}
-	int n=(x/3)*3+y/3;//ÔÚµÚn¸öĞ¡¿ò 
-	for(int i=1;i<=9;++i){//(x,y)´¦ Ã¿¸öÊı¶¼ÊÔÒ»ÊÔ 
+	int n=(x/3)*3+y/3;//åœ¨ç¬¬nä¸ªå°æ¡† 
+	for(int i=1;i<=9;++i){//(x,y)å¤„ æ¯ä¸ªæ•°éƒ½è¯•ä¸€è¯• 
 		if(found)
 			return; 
 		if(r[x][i]<1&&c[y][i]<1&&k[n][i]<1){
@@ -57,7 +92,7 @@ void input(){
 			sudoku[i][j]=ch-'0';
 			r[i][sudoku[i][j]]++;
 			c[j][sudoku[i][j]]++;
-			int n=(i/3)*3+j/3;//ÔÚµÚn¸öĞ¡¿ò 
+			int n=(i/3)*3+j/3;//åœ¨ç¬¬nä¸ªå°æ¡† 
 			k[n][sudoku[i][j]]++; 
 		}
 	}
